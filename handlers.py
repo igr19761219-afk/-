@@ -1262,7 +1262,7 @@ async def silent_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
         keyboard.append([InlineKeyboardButton(f"💬 Напомнить {name}", callback_data=f"remind_{cid}")])
 
     reply_markup = InlineKeyboardMarkup(keyboard) if keyboard else None
-    await update.message.reply_text(text, parse_mode='Markdown', reply_markup=reply_markup)
+    await update.message.reply_text(text, reply_markup=reply_markup)
 
 async def remind_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
     query = update.callback_query
