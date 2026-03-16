@@ -55,7 +55,7 @@ def main():
 
     # Глобальные команды (работают всегда)
     app.add_handler(CommandHandler('invite', handlers.invite_command))
-    app.add_handler(CommandHandler('my_candidates', handlers.my_candidates_command))
+    app.add_handler(CommandHandler('mycandidates', handlers.my_candidates_command))
     app.add_handler(CommandHandler('approve', handlers.approve_command))
     app.add_handler(CommandHandler('reject', handlers.reject_command))
     app.add_handler(CommandHandler('stats', handlers.stats_command))
@@ -66,11 +66,11 @@ def main():
     app.add_handler(CommandHandler('inactive', handlers.inactive_command))
     app.add_handler(CommandHandler('block', handlers.block_command))
     app.add_handler(CommandHandler('unblock', handlers.unblock_command))
-    app.add_handler(CommandHandler('make_inactive', handlers.make_inactive_command))
+    app.add_handler(CommandHandler('makeinactive', handlers.make_inactive_command))
     app.add_handler(CommandHandler('activate', handlers.activate_command))
     app.add_handler(CommandHandler('help', handlers.help_command))
-    app.add_handler(CommandHandler('approve_after', handlers.approve_after_command))
-    app.add_handler(CommandHandler('reject_after', handlers.reject_after_command))
+    app.add_handler(CommandHandler('approveafter', handlers.approve_after_command))
+    app.add_handler(CommandHandler('rejectafter', handlers.reject_after_command))
     app.add_handler(CallbackQueryHandler(handlers.show_choice, pattern='^show_choice$'))
 
     # ConversationHandler (обрабатывает диалог)
