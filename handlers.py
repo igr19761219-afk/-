@@ -664,12 +664,12 @@ async def ask_city_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 async def show_time_options(update_or_query, context):
     keyboard = [
-        [InlineKeyboardButton("Завтра 10:00", callback_data="time_tomorrow_10")],
-        [InlineKeyboardButton("Завтра 12:00", callback_data="time_tomorrow_12")],
-        [InlineKeyboardButton("Завтра 15:00", callback_data="time_tomorrow_15")],
-        [InlineKeyboardButton("Послезавтра 10:00", callback_data="time_dayafter_10")],
-        [InlineKeyboardButton("Послезавтра 12:00", callback_data="time_dayafter_12")],
-        [InlineKeyboardButton("Послезавтра 15:00", callback_data="time_dayafter_15")],
+        [InlineKeyboardButton("Завтра 06:00", callback_data="time_tomorrow_10")],
+        [InlineKeyboardButton("Завтра 08:00", callback_data="time_tomorrow_12")],
+        [InlineKeyboardButton("Завтра 10:00", callback_data="time_tomorrow_15")],
+        [InlineKeyboardButton("Послезавтра 06:00", callback_data="time_dayafter_10")],
+        [InlineKeyboardButton("Послезавтра 08:00", callback_data="time_dayafter_12")],
+        [InlineKeyboardButton("Послезавтра 10:00", callback_data="time_dayafter_15")],
         [InlineKeyboardButton("Другое время", callback_data="time_other")]
     ]
     await update_or_query.message.reply_text(
