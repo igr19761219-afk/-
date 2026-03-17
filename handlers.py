@@ -1149,18 +1149,31 @@ async def stats_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
     silent_count = len(db.get_silent_candidates(user_id, days=config.SILENT_DAYS))
     blocked_count = len(db.get_blocked_candidates(user_id))
     inactive_count = len(db.get_inactive_candidates(user_id))
-    text = (
-        f"📊 **Твоя статистика:**\n\n"
-        f"• Приглашено всего: {total}\n"
-        f"• Активных партнёров: {active}\n"
-        f"• Ожидают подтверждения: {pending}\n"
-        f"• Молчунов (>={config.SILENT_DAYS} дней): {silent_count}\n"
-        f"• Неактивных (inactive): {inactive_count}\n"
-        f"• Заблокировали бота: {blocked_count}\n"
-        f"• Доход отображается в партнёрском кабинете Альфа-Банка.\n\n"
-        f"Используй /silent, чтобы увидеть список и напомнить.\n"
-        f"Используй /blocked, чтобы увидеть заблокировавших."
-    )
+    
+    # Получаем список кандидатов, готовых к подтверждению
+    candidates = db.get_candidates(user_id)
+    
+    text = f"📊 **Твоя статистика:**\n\n"
+    text += f"• Приглашено всего: {total}\n"
+    text += f"• Активных партнёров: {active}\n"
+    text += f"• Ожидают подтверждения: {pending}\n"
+    text += f"• Молчунов (>={config.SILENT_DAYS} дней): {silent_count}\n"
+    text += f"• Неактивных (inactive): {inactive_count}\n"
+    text += f"• Заблокировали бота: {blocked_count}\n\n"
+    
+    if candidates:
+        text += "**Кандидаты, готовые к подтверждению:**\n"
+        for cid, name, username, reg_date in candidates:
+            username_disp = f"@{username}" if username else "—"
+            text += f"• {name} ({username_disp}) — ID: {cid}\n"
+            text += f"  Подтвердить: `/approve {cid}`\n"
+            text += f"  Отклонить: `/reject {cid}`\n\n"
+    else:
+        text += "Нет кандидатов, ожидающих подтверждения.\n"
+    
+    text += f"\nИспользуй /silent, чтобы увидеть неактивных кандидатов и напомнить.\n"
+    text += f"Используй /blocked, чтобы увидеть заблокировавших."
+    
     await update.message.reply_text(text, parse_mode='Markdown')
 
 async def team_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
