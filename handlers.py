@@ -1251,13 +1251,17 @@ async def silent_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
         await update.message.reply_text("👥 У тебя пока нет неактивных кандидатов.")
         return
 
-    text = f"👤 *Неактивные кандидаты (>={config.SILENT_DAYS} дней):*\n\n"
+    text = f"👤 Неактивные кандидаты (>={config.SILENT_DAYS} дней):\n\n"
     keyboard = []
     for cand in candidates:
         cid, name, username, last_active, path, test, feedback, video, meeting = cand
         last_date = datetime.fromisoformat(last_active).strftime("%d.%m %H:%M")
         status = _get_status_description(path, test, feedback, video, meeting)
-        line = f"• {name} (@{username})\n  Последняя активность: {last_date}\n  Статус: {status}\n"
+        # Убираем ВСЕ спецсимволы, заменяем на безопасные
+        safe_name = name.replace('*', '•').replace('_', '-').replace('`', "'")
+        safe_username = username.replace('*', '•').replace('_', '-').replace('`', "'") if username else '—'
+        safe_status = status.replace('*', '•').replace('_', '-').replace('`', "'")
+        line = f"• {safe_name} (@{safe_username})\n  Последняя активность: {last_date}\n  Статус: {safe_status}\n"
         text += line
         keyboard.append([InlineKeyboardButton(f"💬 Напомнить {name}", callback_data=f"remind_{cid}")])
 
