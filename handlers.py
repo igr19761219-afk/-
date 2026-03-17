@@ -1206,7 +1206,7 @@ def generate_reminder_message(user_dict, inviter_mention="мне"):
     if inviter_mention == "мне" and invited_by:
         inviter_mention = get_inviter_mention(invited_by) or "мне"
 
-    f meeting_time:
+    if meeting_time:
         return (
             f"Привет, {first_name}! 👋\n"
             f"У тебя была назначена встреча на {meeting_time}. Не получилось? "
