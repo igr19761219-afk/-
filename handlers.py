@@ -144,7 +144,7 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
         f"1️⃣ **Пройди тест** — 10 вопросов, 5 минут. Узнаешь, где у тебя деньги “утекают”, и получишь пару простых советов. А заодно поможешь с обратной связью.\n\n"
         f"2️⃣ **Посмотри, как тут зарабатывают** — если тема дохода интереснее, чем тесты. Расскажу, сколько можно получать и с чего начать.\n\n"
         f"Жми кнопку ниже, чтобы продолжить 👇\n\n"
-        f"⚠️ Если Telegram работает медленно или кнопки не нажимаются, установите приложение «Телега» (https://play.google.com/store/apps/details?id=ru.dahl.messenger) или включите VPN (TiPTop: https://play.google.com/store/apps/details?id=com.free.tiptop.vpn.proxy). После этого бот будет отвечать быстро."
+        f"⚠️ Если Telegram работает медленно или кнопки не нажимаются, установите приложение «Телега» (https://play.google.com/store/apps/details?id=ru.dahl.messenger). После этого бот будет отвечать быстро."
     )
     await update.message.reply_text(
         text,
